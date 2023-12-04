@@ -45,3 +45,11 @@ def test_price_negative():
     with pytest.raises(ValueError):
         Item('Смартфон', -1, 20)
 
+
+def test_apply_discount(item_smartphone):
+    """
+    Проверяет работу функции apply_discount
+    """
+    Item.pay_rate = 0.5
+    item_smartphone.apply_discount()
+    assert item_smartphone.price == 5000.0
