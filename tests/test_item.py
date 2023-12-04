@@ -1,1 +1,47 @@
-"""Здесь надо написать тесты с использованием pytest для модуля item."""
+import pytest
+from src.item import Item
+
+
+@pytest.fixture
+def item_smartphone():
+    return Item('Смартфон', 10000, 20)
+
+
+def test_calculate_total_price(item_smartphone):
+    """
+    Проверяет общую стоимость конкретного товара в магазине
+    """
+    assert item_smartphone.calculate_total_price() == 200000
+
+
+def test_quantity_not_int():
+    """
+    Проверяет задано ли количество товаров целым числом
+    """
+    with pytest.raises(ValueError):
+        Item('Смартфон', 10000, 'abc')
+
+
+def test_quantity_negative():
+    """
+    Проверяет больше ли количество товара 0 ед.
+    """
+    with pytest.raises(ValueError):
+        Item('Смартфон', 10000, -2)
+
+
+def test_price_not_number():
+    """
+    Проверяет задана ли цена товара в цифровом значении
+    """
+    with pytest.raises(ValueError):
+        Item('Смартфон', 'abc', 20)
+
+
+def test_price_negative():
+    """
+    Проверяет не нулевая или отрицательная стоимость товара
+    """
+    with pytest.raises(ValueError):
+        Item('Смартфон', -1, 20)
+
