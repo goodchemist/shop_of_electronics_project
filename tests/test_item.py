@@ -53,3 +53,30 @@ def test_apply_discount(item_smartphone):
     Item.pay_rate = 0.5
     item_smartphone.apply_discount()
     assert item_smartphone.price == 5000.0
+
+
+def test_name_not_str():
+    """
+    Проверяет
+    """
+    with pytest.raises(ValueError):
+        Item(1111, 10000, 5)
+
+
+def test_name_is_not_alpha():
+    """
+    Проверяет
+    """
+    with pytest.raises(ValueError):
+        Item('Apple123', 10000, 5)
+
+
+def test_getter_name(item_smartphone):
+    item_smartphone.name = 'Смартфон'
+
+
+def test_setter_name(item_smartphone):
+    item_smartphone.name = 'Телефон'
+    assert item_smartphone.name == 'Телефон'
+    item_smartphone.name = 'СуперСмартфон'
+    assert item_smartphone.name == 'СуперСмарт'

@@ -13,7 +13,10 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
-        self.name = name
+        if isinstance(name, str) and name.isalpha():
+            self.__name = name
+        else:
+            raise ValueError('name is not correct')
 
         if not isinstance(price, float):
             if not isinstance(price, int):
@@ -29,6 +32,18 @@ class Item:
         self.quantity = quantity
 
         self.all.append(self)
+
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, new_name):
+        if len(new_name) > 10:
+            self.__name = new_name[:10]
+            # Exception('Длина наименования товара превышает 10 символов')
+        else:
+            self.__name = new_name
 
     def calculate_total_price(self) -> float:
         """
