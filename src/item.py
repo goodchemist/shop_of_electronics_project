@@ -85,3 +85,13 @@ class Item:
 
         for item in items:
             cls(item['name'], int(item['price']), int(item['quantity']))
+
+    @staticmethod
+    def string_to_number(number_in_string) -> int:
+        """
+        статический метод, возвращающий число из числа-строки
+        :param number_in_string: числo-строкa
+        :return: число
+        """
+        number_in_int = int(float(number_in_string))
+        return number_in_int
