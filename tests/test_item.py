@@ -72,10 +72,16 @@ def test_name_is_not_alpha():
 
 
 def test_getter_name(item_smartphone):
+    """
+    Проверяет вывод приватного атрибута name
+    """
     item_smartphone.name = 'Смартфон'
 
 
 def test_setter_name(item_smartphone):
+    """
+    Проверяет работу сеттера атрибута name
+    """
     item_smartphone.name = 'Телефон'
     assert item_smartphone.name == 'Телефон'
     item_smartphone.name = 'СуперСмартфон'
