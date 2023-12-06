@@ -84,5 +84,17 @@ def test_setter_name(item_smartphone):
     """
     item_smartphone.name = 'Телефон'
     assert item_smartphone.name == 'Телефон'
+
     item_smartphone.name = 'СуперСмартфон'
     assert item_smartphone.name == 'СуперСмарт'
+
+
+def test_instantiate_from_csv():
+    """
+    Проверяет работу по созданию экзепляров класса Item из csv-файла
+    """
+    Item.instantiate_from_csv()
+    assert len(Item.all) == 5
+
+    item1 = Item.all[0]
+    assert item1.name == 'Смартфон'

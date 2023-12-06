@@ -1,3 +1,7 @@
+import csv
+import os
+
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -59,3 +63,25 @@ class Item:
         Применяет установленную скидку для конкретного товара.
         """
         self.price *= self.pay_rate
+
+    @classmethod
+    def instantiate_from_csv(cls, path_to_file=None) -> None:
+        """
+        Kласс-метод, инициализирующий экземпляры класса Item данными из файла csv-формата
+
+        :param path_to_file: путь до файла csv
+        """
+        if path_to_file is None:
+            path_to_file = os.path.join(os.path.dirname(__file__), 'items.csv')
+
+        cls.all = []
+
+        items = []
+
+        with open(path_to_file, 'r') as csv_file:
+            reader = csv.DictReader(csv_file)
+            for item in reader:
+                items.append(item)
+
+        for item in items:
+            cls(item['name'], int(item['price']), int(item['quantity']))
