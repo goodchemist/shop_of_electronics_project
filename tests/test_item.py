@@ -111,3 +111,10 @@ def test_repr(item_smartphone):
     Проверяет работу метода repr
     """
     assert repr(item_smartphone) == "Item('Смартфон', 10000, 20)"
+
+
+def test_str(item_smartphone):
+    """
+    Проверяет работу метода str
+    """
+    assert str(item_smartphone) == "Смартфон"

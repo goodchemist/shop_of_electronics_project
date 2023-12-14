@@ -45,6 +45,13 @@ class Item:
         """
         return f'{self.__class__.__name__}{self.name, self.price, self.quantity}'
 
+    def __str__(self):
+        """
+        Возвращает информацию об объекте класса для пользователя
+        :return: f-строка с информацией об объекте класса
+        """
+        return f'{self.name}'
+
     @property
     def name(self):
         return self.__name
