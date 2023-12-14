@@ -37,6 +37,14 @@ class Item:
 
         self.all.append(self)
 
+    def __repr__(self):
+        """
+        Возвращает информацию об объекте класса в режиме отладки
+
+        :return: f-строка с информацией об объекте класса
+        """
+        return f'{self.__class__.__name__}{self.name, self.price, self.quantity}'
+
     @property
     def name(self):
         return self.__name
