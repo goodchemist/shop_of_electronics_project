@@ -1,5 +1,6 @@
 import pytest
 from src.item import Item
+from src.phone import Phone
 
 
 @pytest.fixture
@@ -110,3 +111,21 @@ def test_str(item_smartphone):
     Проверяет работу метода str
     """
     assert str(item_smartphone) == "Смартфон"
+
+
+def test_add(item_smartphone):
+    """
+    Проверяет работу метода add.
+    """
+    assert item_smartphone + item_smartphone == 40
+
+    phone = Phone("iPhone 14", 120_000, 5, 2)
+    assert phone + phone == 10
+
+
+def test_add_exception(item_smartphone):
+    """
+    Проверяет работу метода add при попытке сложить не экземпляры нужных классов.
+    """
+    with pytest.raises(Exception):
+        item_smartphone + 10

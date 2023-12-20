@@ -110,3 +110,14 @@ class Item:
         """
         number_in_int = int(float(number_in_string))
         return number_in_int
+
+    def __add__(self, other) -> int:
+        """
+        Складывает количество двух товаров.
+        :param other: товар после знака +
+        :return: общее количество двух товаров
+        """
+        if issubclass(other.__class__, self.__class__):
+            return self.quantity + other.quantity
+        raise Exception
+
