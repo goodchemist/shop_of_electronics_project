@@ -57,18 +57,10 @@ def test_apply_discount(item_smartphone):
 
 def test_name_not_str():
     """
-    Проверяет
+    Проверяет представлено ли наименование товара в строковом типе данных.
     """
     with pytest.raises(ValueError):
         Item(1111, 10000, 5)
-
-
-def test_name_is_not_alpha():
-    """
-    Проверяет
-    """
-    with pytest.raises(ValueError):
-        Item('Apple123', 10000, 5)
 
 
 def test_getter_name(item_smartphone):

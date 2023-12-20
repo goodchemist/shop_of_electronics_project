@@ -17,7 +17,7 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
-        if isinstance(name, str) and name.isalpha():
+        if isinstance(name, str):
             self.__name = name
         else:
             raise ValueError('name is not correct')
