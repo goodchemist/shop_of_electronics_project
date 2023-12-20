@@ -5,7 +5,13 @@ class Phone(Item):
 
     def __init__(self, name: str, price: float, quantity: int, number_of_sim: int) -> None:
         super().__init__(name, price, quantity)
-        self.number_of_sim = number_of_sim
+
+        if not isinstance(number_of_sim, int):
+            raise ValueError('Number of physical SIM-cards must be an integer.')
+        elif number_of_sim <= 0:
+            raise ValueError('Number of physical SIM-cards must be greater than 0.')
+
+        self._number_of_sim = number_of_sim
 
     def __repr__(self):
         """
@@ -14,3 +20,17 @@ class Phone(Item):
         :return: f-строка с информацией об объекте класса.
         """
         return f'{self.__class__.__name__}{self.name, self.price, self.quantity, self.number_of_sim}'
+
+    @property
+    def number_of_sim(self):
+        return self._number_of_sim
+
+    @number_of_sim.setter
+    def number_of_sim(self, new_number_of_sim: int) -> None:
+        """
+        Устанавливает новое количество сим-карт.
+        :param new_number_of_sim: новое количество сим-карт
+        """
+        if not isinstance(new_number_of_sim, int) or new_number_of_sim <= 0:
+            raise ValueError('Number of physical SIM-cards must be an integer and greater than 0.')
+        self._number_of_sim = new_number_of_sim
