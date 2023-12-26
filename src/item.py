@@ -22,9 +22,9 @@ class Item:
         else:
             raise ValueError('name is not correct')
 
-        if not isinstance(price, float):
-            if not isinstance(price, int):
-                raise ValueError('price have to be float or int')
+        if not isinstance(price, float | int):
+            raise ValueError('price have to be float or int')
+
         if price <= 0:
             raise ValueError('price have to be more than 0')
         self.price = price
