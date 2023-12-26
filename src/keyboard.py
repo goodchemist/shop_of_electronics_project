@@ -1,12 +1,43 @@
 from src.item import Item
 
 
-class Keyboard(Item):
+class Language:
+
+    def __init__(self, name, price, quantity):
+        """
+        Инициализатор класса-миксина Language, который помогает создать экземпляр класса Keyboard,
+        вызвав родительский класс Item.
+        Параметр 'language' по умолчанию - английский (EN).
+
+        :param name: Название товара.
+        :param price: Цена за единицу товара.
+        :param quantity: Количество товара в магазине.
+        """
+        self._language = 'EN'
+        super().__init__(name, price, quantity)
+
+    @property
+    def language(self):
+        return self._language
+
+    def change_lang(self) -> None:
+        """
+        Mетод для изменения языка (раскладки клавиатуры) - параметр 'language'.
+        Всего поддерживается два языка: EN и RU.
+        :return: None
+        """
+        if self._language == 'EN':
+            self._language = 'RU'
+        else:
+            self._language = 'EN'
+
+
+class Keyboard(Language, Item):
 
     def __init__(self, name: str, price: float | int, quantity: int):
         """
         Создание экземпляра класса Keyboard.
-        param 'language' по умолчанию - английский (EN).
+        Параметр 'language' по умолчанию - английский (EN).
 
         :param name: Название товара.
         :param price: Цена за единицу товара.
@@ -14,9 +45,3 @@ class Keyboard(Item):
 
         """
         super().__init__(name, price, quantity)
-
-        self.__language = 'EN'
-
-    @property
-    def language(self):
-        return self.__language
