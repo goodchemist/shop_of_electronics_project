@@ -15,3 +15,13 @@ def test_init(keyboard):
     assert keyboard.price == 9600
     assert keyboard.quantity == 5
     assert keyboard.language == 'EN'
+
+
+def test_change_lang(keyboard):
+    """
+    Тестирует работу метода change_lang.
+    """
+    keyboard.change_lang()
+    assert keyboard.language == "RU"
+    keyboard.change_lang()
+    assert keyboard.language == "EN"
