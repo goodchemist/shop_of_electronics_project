@@ -3,18 +3,13 @@ from src.item import Item
 
 class Language:
 
-    def __init__(self, name, price, quantity):
+    def __init__(self):
         """
         Инициализатор класса-миксина Language, который помогает создать экземпляр класса Keyboard,
         вызвав родительский класс Item.
         Параметр 'language' по умолчанию - английский (EN).
-
-        :param name: Название товара.
-        :param price: Цена за единицу товара.
-        :param quantity: Количество товара в магазине.
         """
         self._language = 'EN'
-        super().__init__(name, price, quantity)
 
     @property
     def language(self):
@@ -32,7 +27,7 @@ class Language:
             self._language = 'EN'
 
 
-class Keyboard(Language, Item):
+class Keyboard(Item, Language):
 
     def __init__(self, name: str, price: float | int, quantity: int):
         """
@@ -45,3 +40,4 @@ class Keyboard(Language, Item):
 
         """
         super().__init__(name, price, quantity)
+        Language.__init__(self)
