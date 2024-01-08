@@ -117,7 +117,7 @@ class Item:
         :param other: товар после знака +
         :return: общее количество двух товаров
         """
-        if issubclass(other.__class__, self.__class__):
+        if issubclass(other.__class__, self.__class__) or issubclass(self.__class__, other.__class__):
             return self.quantity + other.quantity
         raise Exception
 
