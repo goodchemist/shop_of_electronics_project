@@ -1,5 +1,7 @@
+import os
+
 import pytest
-from src.item import Item
+from src.item import Item, InstantiateCSVError
 from src.phone import Phone
 
 
@@ -129,3 +131,12 @@ def test_add_exception(item_smartphone):
     """
     with pytest.raises(Exception):
         item_smartphone + 10
+
+
+def test_csv_error():
+    """
+    Проверяет выбрасывается ли исключение, если csv-файл поврежден.
+    """
+    with pytest.raises(InstantiateCSVError, match='Файл item.csv поврежден.'):
+        path_to_file = os.path.join(os.path.dirname(__file__), 'items_test.csv')
+        Item.instantiate_from_csv(path_to_file)
