@@ -2,6 +2,10 @@ import csv
 import os
 
 
+class InstantiateCSVError(Exception):
+    pass
+
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -99,7 +103,10 @@ class Item:
                 items.append(item)
 
         for item in items:
-            cls(item['name'], int(item['price']), int(item['quantity']))
+            if item.get('name') and item.get('price') and item.get('quantity'):
+                cls(item['name'], float(item['price']), int(item['quantity']))
+            else:
+                raise InstantiateCSVError('Файл item.csv поврежден.')
 
     @staticmethod
     def string_to_number(number_in_string) -> int:
@@ -120,4 +127,3 @@ class Item:
         if issubclass(other.__class__, self.__class__) or issubclass(self.__class__, other.__class__):
             return self.quantity + other.quantity
         raise Exception
-
