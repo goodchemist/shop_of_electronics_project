@@ -140,3 +140,11 @@ def test_csv_error():
     with pytest.raises(InstantiateCSVError, match='Файл item.csv поврежден.'):
         path_to_file = os.path.join(os.path.dirname(__file__), 'items_test.csv')
         Item.instantiate_from_csv(path_to_file)
+
+
+def test_csv_not_found():
+    """
+    Проверяет выбрасывается ли исключение, если csv-файл не найден.
+    """
+    with pytest.raises(FileNotFoundError):
+        Item.instantiate_from_csv('path_to_item.csv')
