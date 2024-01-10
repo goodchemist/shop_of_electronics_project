@@ -93,6 +93,9 @@ class Item:
         if path_to_file is None:
             path_to_file = os.path.join(os.path.dirname(__file__), 'items.csv')
 
+        if not os.path.exists(path_to_file):
+            raise FileNotFoundError('Отсутствует файл item.csv.')
+
         cls.all = []
 
         items = []
