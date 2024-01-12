@@ -3,6 +3,9 @@ import os
 
 
 class InstantiateCSVError(Exception):
+    """
+    Класс для вызова исключения при повреждении item.csv файла.
+    """
     pass
 
 
@@ -43,7 +46,7 @@ class Item:
 
     def __repr__(self):
         """
-        Возвращает информацию об объекте класса в режиме отладки
+        Возвращает информацию об объекте класса в режиме отладки.
 
         :return: f-строка с информацией об объекте класса
         """
@@ -51,7 +54,7 @@ class Item:
 
     def __str__(self):
         """
-        Возвращает информацию об объекте класса для пользователя
+        Возвращает информацию об объекте класса для пользователя.
         :return: f-строка с информацией об объекте класса
         """
         return f'{self.name}'
@@ -62,9 +65,10 @@ class Item:
 
     @name.setter
     def name(self, new_name):
+
         if len(new_name) > 10:
             self.__name = new_name[:10]
-            # Exception('Длина наименования товара превышает 10 символов')
+
         else:
             self.__name = new_name
 
@@ -72,7 +76,7 @@ class Item:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
 
-        :return: Общая стоимость товара.
+        :return: oбщая стоимость товара.
         """
         total_sum = self.price * self.quantity
         return total_sum
@@ -86,7 +90,7 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls, path_to_file=None) -> None:
         """
-        Kласс-метод, инициализирующий экземпляры класса Item данными из файла csv-формата
+        Kласс-метод, инициализирующий экземпляры класса Item данными из файла csv-формата.
 
         :param path_to_file: путь до файла csv
         """
@@ -114,7 +118,7 @@ class Item:
     @staticmethod
     def string_to_number(number_in_string) -> int:
         """
-        статический метод, возвращающий число из числа-строки
+        Cтатический метод, возвращающий число из числа-строки.
         :param number_in_string: числo-строкa
         :return: число
         """

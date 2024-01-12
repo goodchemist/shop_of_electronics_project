@@ -1,5 +1,4 @@
 import os
-
 import pytest
 from src.item import Item, InstantiateCSVError
 from src.phone import Phone
@@ -12,14 +11,14 @@ def item_smartphone():
 
 def test_calculate_total_price(item_smartphone):
     """
-    Проверяет общую стоимость конкретного товара в магазине
+    Проверяет общую стоимость конкретного товара в магазине.
     """
     assert item_smartphone.calculate_total_price() == 200000
 
 
 def test_quantity_not_int():
     """
-    Проверяет задано ли количество товаров целым числом
+    Проверяет задано ли количество товаров целым числом.
     """
     with pytest.raises(ValueError):
         Item('Смартфон', 10000, 'abc')
@@ -35,7 +34,7 @@ def test_quantity_negative():
 
 def test_price_not_number():
     """
-    Проверяет задана ли цена товара в цифровом значении
+    Проверяет задана ли цена товара в цифровом значении.
     """
     with pytest.raises(ValueError):
         Item('Смартфон', 'abc', 20)
@@ -43,7 +42,7 @@ def test_price_not_number():
 
 def test_price_negative():
     """
-    Проверяет не нулевая или отрицательная стоимость товара
+    Проверяет не нулевая или отрицательная ли стоимость товара.
     """
     with pytest.raises(ValueError):
         Item('Смартфон', -1, 20)
@@ -51,7 +50,7 @@ def test_price_negative():
 
 def test_apply_discount(item_smartphone):
     """
-    Проверяет работу функции apply_discount
+    Проверяет работу функции apply_discount.
     """
     Item.pay_rate = 0.5
     item_smartphone.apply_discount()
@@ -68,14 +67,14 @@ def test_name_not_str():
 
 def test_getter_name(item_smartphone):
     """
-    Проверяет вывод приватного атрибута name
+    Проверяет вывод приватного атрибута name.
     """
     item_smartphone.name = 'Смартфон'
 
 
 def test_setter_name(item_smartphone):
     """
-    Проверяет работу сеттера атрибута name
+    Проверяет работу сеттера атрибута name.
     """
     item_smartphone.name = 'Телефон'
     assert item_smartphone.name == 'Телефон'
@@ -86,7 +85,7 @@ def test_setter_name(item_smartphone):
 
 def test_instantiate_from_csv():
     """
-    Проверяет работу по созданию экзепляров класса Item из csv-файла
+    Проверяет работу по созданию экзепляров класса Item из csv-файла.
     """
     Item.instantiate_from_csv()
     assert len(Item.all) == 5
@@ -96,6 +95,9 @@ def test_instantiate_from_csv():
 
 
 def test_string_to_number():
+    """
+    Проверяет работу метода string_to_number.
+    """
     assert Item.string_to_number('5') == 5
     assert Item.string_to_number('5.0') == 5
     assert Item.string_to_number('5.5') == 5
@@ -103,14 +105,14 @@ def test_string_to_number():
 
 def test_repr(item_smartphone):
     """
-    Проверяет работу метода repr
+    Проверяет работу метода repr.
     """
     assert repr(item_smartphone) == "Item('Смартфон', 10000, 20)"
 
 
 def test_str(item_smartphone):
     """
-    Проверяет работу метода str
+    Проверяет работу метода str.
     """
     assert str(item_smartphone) == "Смартфон"
 
@@ -127,7 +129,7 @@ def test_add(item_smartphone):
 
 def test_add_exception(item_smartphone):
     """
-    Проверяет работу метода add при попытке сложить не экземпляры нужных классов.
+    Проверяет работу метода add при попытке сложить не экземпляры заданных классов.
     """
     with pytest.raises(Exception):
         item_smartphone + 10

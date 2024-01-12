@@ -4,6 +4,15 @@ from src.item import Item
 class Phone(Item):
 
     def __init__(self, name: str, price: float | int, quantity: int, number_of_sim: int) -> None:
+        """
+        Создание экземпляра класса Phone.
+
+        :param name: Название телефона.
+        :param price: Цена за 1 шт.
+        :param quantity: Количество товара в магазине.
+        :param number_of_sim: Количество SIM-карт.
+        """
+
         super().__init__(name, price, quantity)
 
         if not isinstance(number_of_sim, int):
@@ -17,7 +26,7 @@ class Phone(Item):
         """
         Возвращает информацию об объекте класса в режиме отладки.
 
-        :return: f-строка с информацией об объекте класса.
+        :return: f-строка с информацией об объекте класса
         """
         return f'{self.__class__.__name__}{self.name, self.price, self.quantity, self.number_of_sim}'
 
@@ -29,6 +38,7 @@ class Phone(Item):
     def number_of_sim(self, new_number_of_sim: int) -> None:
         """
         Устанавливает новое количество сим-карт.
+
         :param new_number_of_sim: новое количество сим-карт
         """
         if not isinstance(new_number_of_sim, int) or new_number_of_sim <= 0:

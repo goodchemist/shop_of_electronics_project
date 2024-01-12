@@ -37,7 +37,6 @@ class Keyboard(Item, Language):
         :param name: Название товара.
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
-
         """
         super().__init__(name, price, quantity)
         Language.__init__(self)
